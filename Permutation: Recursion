@@ -1,0 +1,72 @@
+import java.util.ArrayList;
+import java.util.*;
+public class pp {
+		
+	
+	
+	
+	public static void printperm(ArrayList<Integer> p1,ArrayList<Integer> q1) {
+		
+		if (q1.size()==1) {
+			String s ="";
+			for(int i=0;i<p1.size();i++) {
+				s=s+p1.get(i);
+			}
+			for(int i=0;i<q1.size();i++) {
+				s=s+q1.get(i);
+			}
+			
+			
+			System.out.println(s.toString());
+		}
+		else {
+			for(int i=0;i<q1.size();i++) {
+				ArrayList<Integer> p2= new ArrayList<Integer>();
+				ArrayList<Integer> q2= new ArrayList<Integer>();
+				for(int k=0;k<p1.size();k++) {
+					p2.add(p1.get(k));
+					
+				}
+				for(int j=0;j<q1.size();j++) {
+					q2.add(q1.get(j));
+					
+				}
+				
+				p2.add(q1.get(i));
+				q2.remove(i);
+				printperm(p2,q2);
+			
+			}
+			
+			
+		}
+		
+		
+	}
+	
+	public static void main(String args[]) {
+		
+		System.out.println("enter main");
+		Scanner kb= new Scanner(System.in);
+		int n=kb.nextInt();
+		
+		int k=1;
+		ArrayList<Integer> p= new ArrayList<Integer>();
+		ArrayList<Integer> s= new ArrayList<Integer>();
+		// fill array s with 1 to 10
+		
+		
+		for(int i=0;i<n;i++) {
+			s.add(k);
+			k++;
+			
+		}
+		printperm(p,s);
+		
+		
+	}
+	
+	
+	
+	
+}
