@@ -1,0 +1,38 @@
+class Solution { 
+	public int maxSubArray(int[] nums) {
+        
+        return a(nums,0,nums.length-1);
+        
+    }   
+    public  int a(int [] num, int start, int end) {
+   
+		if (start==end){
+			return num[start]; 
+		}
+		
+		int mid=(start+end)/2;
+		int left_Sum=a(num,start,mid);
+		int right_Sum=a(num,mid+1,end);
+
+		int maxR=num[mid+1];
+		int maxL=num[mid];
+		
+		int currentL=num[mid];
+		
+		for(int i=mid-1;i>=start;i=i-1) {
+			currentL+=num[i];
+			if(currentL>maxL) {
+				maxL=currentL;
+			}
+		}
+		int currentR=num[mid+1];
+		for(int i=mid+2;i<=end;i=i++) {
+			currentR+=num[i];
+			if(currentR>maxL) {
+				maxL=currentL;
+			}
+		}
+		int t=Math.max(maxR, maxL);
+		return Math.max(t,Math.max(right_Sum,left_Sum));
+        }  
+}
