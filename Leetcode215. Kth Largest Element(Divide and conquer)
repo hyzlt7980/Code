@@ -1,6 +1,6 @@
 public class findKthLargest {
 	public static int findKthLargest(int nums[],int k){
-		int r=nums.length-k;
+		int r=nums.length-k+1;
 		
 		return quickSortMethod(nums,0,nums.length-1,r);
 	}
