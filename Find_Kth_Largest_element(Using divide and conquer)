@@ -1,0 +1,59 @@
+public class findKthLargest {
+	public static int findKthLargest(int nums[],int k){
+		int r=nums.length-k;
+		
+		return quickSortMethod(nums,0,nums.length-1,r);
+	}
+	
+	public static int quickSortMethod(int[] nums,int l, int r,int k) {
+		if(l==r) {
+			return nums[l];
+		}
+		
+		else{
+			int end=r-1;
+			int i=l-1;
+			for(int j=l;j<=end;j++) {
+				if(nums[j]<nums[r]) {
+					i++;
+					swap(nums,i,j);
+				}
+			}
+			
+			swap(nums,i+1,r);			
+			int rank=0;
+			for(int t=0;t<=i+1;t++) {
+				rank++;
+				
+			}
+			if(k<rank) {
+				return quickSortMethod(nums,l,i,k);
+			}
+			
+			else if(k>rank) {
+				return quickSortMethod(nums,i+2,r,k);
+			}
+			else  {
+				return nums[i+1];
+			}
+			
+			
+		}
+		
+		
+	}
+	
+	
+	static void swap(int[] array, int i, int j) {
+		  int temp = array[i];
+		  array[i] = array[j];
+		  array[j] = temp;
+	}
+	public static void main(String argsp[]) {
+		int[] a= {2,1};
+		int x=findKthLargest(a,2);
+		System.out.println(x);
+		
+	}
+	
+}
