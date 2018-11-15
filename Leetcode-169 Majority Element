@@ -1,0 +1,57 @@
+class MajorityElement {
+    public static int majorityElement(int[] nums) {
+      return major(nums,0,nums.length-1);
+     
+    }  
+    static int major(int[] nums,int l,int r){
+        
+    	if(l==r) {
+            System.out.println("return base"+nums[l]);
+    		return nums[l];
+    	}
+        int mid=l+(r-l)/2;
+        System.out.println("mid"+mid);
+       
+        int left=major(nums,l,mid);
+        int right=major(nums,mid+1,r);
+        
+        
+        System.out.println("left"+left);
+        System.out.println("right"+right);
+        if (left==Integer.MIN_VALUE &&right==Integer.MIN_VALUE){
+            return Integer.MIN_VALUE;
+        }
+        
+        if(left==right){
+            return left;
+        }
+        
+        int size=r-l+1;
+        int k=size/2;
+        int leftcount=count(nums,l,r,left);
+        int rightcount=count(nums,l,r,right);
+        if(leftcount>k){
+            return left;
+        }
+        if(rightcount>k){
+            return right;
+        }
+        else{
+            System.out.println("return min_value");
+        	return Integer.MIN_VALUE;
+        }
+    }
+    static int count(int[] nums,int l,int r,int x){
+        int count=0;
+        for(int i=l;i<=r;i++){
+            if(nums[i]==x)
+                count++;
+        }
+        return count;
+    }
+    public static void main(String args[]) {
+    	int[] a= {-1,1,1,1,2,1};
+    	int y=majorityElement(a);
+    	System.out.println(y);
+    }
+}
